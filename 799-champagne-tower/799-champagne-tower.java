@@ -7,7 +7,7 @@ class Solution {
                 if(pyramid[i][j]>1){
                     pyramid[i+1][j]+=(double)(pyramid[i][j]-1)/2;
                     pyramid[i+1][j+1]+=(double)(pyramid[i][j]-1)/2;
-                    pyramid[i][j]=1;
+                   // pyramid[i][j]=1;
                 }
             }
         }
