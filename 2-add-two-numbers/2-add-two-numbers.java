@@ -17,9 +17,8 @@ class Solution {
             int val1= (l1!=null)?l1.val:0;
             int val2=(l2!=null)?l2.val:0;
             int l3 = val1+val2+carry;
-            carry=(l3>=10)?l3/10:0;
-            int val3=l3%10;
-            restmp.next = new ListNode(val3);            
+            carry=l3/10;
+            restmp.next = new ListNode(l3%10);            
             if(l1!=null)
                 l1=l1.next;
             if(l2!=null)
