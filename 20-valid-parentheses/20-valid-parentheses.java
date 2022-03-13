@@ -10,7 +10,7 @@ class Solution {
             else if(c=='{')
                 stack.push('}');
             else {
-                if(stack.empty() || stack.pop()!=c)
+                if(stack.isEmpty() || stack.pop()!=c)
                     return false;
             }
             
