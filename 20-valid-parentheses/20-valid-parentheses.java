@@ -4,20 +4,13 @@ class Solution {
         for(int i =0;i<s.length();i++){
             char c = s.charAt(i);
             if(c=='(')
-                stack.push('(');
+                stack.push(')');
             else if(c=='[')
-                stack.push('[');
+                stack.push(']');
             else if(c=='{')
-                stack.push('{');
+                stack.push('}');
             else {
-                if(stack.empty())
-                    return false;
-                char cc=stack.pop();
-                if(cc=='(' && c!=')')
-                    return false;
-                else if(cc=='[' && c!=']')
-                    return false;
-                else if(cc=='{'&& c!='}')
+                if(stack.empty() || stack.pop()!=c)
                     return false;
             }
             
