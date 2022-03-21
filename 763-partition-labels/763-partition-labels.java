@@ -8,13 +8,21 @@ class Solution {
         int lastoccur = 0;
         int j=0;
         int prev=0;
-       for(int i =0;i<s.length();i++){
-           j=Math.max(j,last[s.charAt(i)-'a']);
-           if(i==j){
-               result.add(i-prev+1);
-               prev=i+1;
-           }
-       }
+        while(j<s.length()){
+            lastoccur=last[s.charAt(j)-'a'];
+            for(int i =j+1;i<lastoccur;i++){
+                lastoccur=Math.max(lastoccur,last[s.charAt(i)-'a']);
+            }
+            j = lastoccur+1;
+            if(result.size()>0){
+              //  System.out.println("j"+j+" "+result.get(result.size()-1));
+                result.add(j-prev);
+
+            }
+            else
+                result.add(j);
+            prev=j;
+        }
         return result;
     }
 }
