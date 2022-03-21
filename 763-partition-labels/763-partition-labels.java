@@ -2,8 +2,8 @@ class Solution {
     public List<Integer> partitionLabels(String s) {
         ArrayList<Integer> result = new ArrayList();
         int[] last = new int[26];
-        for(int i =0;i<s.length();i++){
-            last[s.charAt(i)-'a']=i;
+        for (int i = 0; i < 26; i++) {
+            last[i] = s.lastIndexOf('a' + i);
         }
         int lastoccur = 0;
         int j=0;
