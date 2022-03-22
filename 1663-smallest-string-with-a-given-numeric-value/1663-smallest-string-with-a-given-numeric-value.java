@@ -1,28 +1,18 @@
 class Solution {
     public String getSmallestString(int n, int k) {
-        char ch[]=new char[n];
-        int i=0;
-        while(i<n)
-        {
-            if(26*(n-i)>=k)
-            {
-                ch[i]='a';
-                i++;
-                k--;
-            }
-            else
-            {
+        char[] res = new char[n];
+        for (int i = 0; i < n; i++) res[i] = 'a';
+        k -= n;
+        while (k > 0) {
+            if (k > 25) {
+                res[--n] = 'z';
+                 k -= 25;
+            } else {
+                res[--n] = (char) (k + 97);
                 break;
             }
         }
-        i--;
-        ch[i]=(char)(k%26+'a');
-        i++;
-        while(i<n)
-        {
-            ch[i]='z';
-            i++;
-        }
-        return new String(ch);
+
+        return new String(res);
     }
 }
