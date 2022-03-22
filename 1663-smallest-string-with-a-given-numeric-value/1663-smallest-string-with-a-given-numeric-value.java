@@ -6,6 +6,6 @@ class Solution {
             res[i]=(char)(val+'a'-1);
             k-=val;
         }
-        return String.valueOf(res);
+        return new String(res);
     }
 }
