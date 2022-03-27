@@ -11,9 +11,11 @@ class Solution {
                      sold++;
              }
              pq.add(new Row(i,sold));
+             if(pq.size()>k)
+                 pq.poll();
          }
         int[] res = new int[k];
-        for(int i=0;i<k;i++){
+        for(int i=k-1;i>=0;i--){
             res[i]=pq.poll().idx;
         }
         return res;
@@ -31,10 +33,10 @@ class Row {
 class RowComparator implements Comparator<Row>{
             public int compare(Row r1, Row r2) {
                 if (r1.sold < r2.sold)
-                    return -1;
+                    return 1;
                 else if (r1.sold >r2.sold)
-                    return 1;          
-                int c = r1.idx<r2.idx?-1:1;
+                    return -1;          
+                int c = r1.idx<r2.idx?1:-1;
                 return c;
                 
                 }
