@@ -4,10 +4,8 @@ class Solution {
         int right=s.length-1;
         while(left<=right){
             char end = s[right];
-            s[right] = s[left];
-            s[left]=end;
-            left++;
-            right--;
+            s[right--] = s[left];
+            s[left++]=end;
         }
     }
 }
