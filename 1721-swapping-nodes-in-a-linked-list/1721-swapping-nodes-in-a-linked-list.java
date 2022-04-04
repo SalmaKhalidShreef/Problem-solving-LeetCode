@@ -10,32 +10,21 @@
  */
 class Solution {
     public ListNode swapNodes(ListNode head, int k) {
-        int size =0;
-        ListNode tmp = head;
-        ListNode res =  new ListNode();
-        ListNode restmp = res;
-        while(tmp!=null){
-            size++;
-            tmp=tmp.next;
+        ArrayList<Integer> list = new ArrayList();
+        while(head!=null){
+            list.add(head.val);
+            head=head.next;
         }
-        int i =1;
-        ListNode swapNode1 = res;
-        ListNode swapNode2=res;
-        tmp = head;
-        while(tmp!=null){
-            restmp.next=new ListNode(tmp.val);
-            restmp=restmp.next;
-            if(i==k)
-                swapNode1=restmp;
-            if(i==(size-k+1))
-               swapNode2=restmp;
-
-            i++;
-            tmp=tmp.next;
+        int tmp = list.get(k-1);
+        int tmp2 = list.get(list.size()-k);
+        list.set(k-1,tmp2);
+        list.set(list.size()-k,tmp);
+        ListNode res = new ListNode();
+        ListNode tempres=res;
+        for(int i : list){
+            tempres.next = new ListNode(i);
+            tempres=tempres.next;
         }
-        int tmpval=swapNode1.val;
-        swapNode1.val=swapNode2.val;
-        swapNode2.val=tmpval;
         return res.next;
     }
 }
