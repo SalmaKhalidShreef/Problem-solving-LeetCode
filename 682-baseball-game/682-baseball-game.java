@@ -6,13 +6,13 @@ class Solution {
                 s.push(Integer.parseInt(str));
             else if(str.charAt(0)=='-')
                 s.push(0-Integer.parseInt(str.substring(1,str.length())));
-            else if(str.equals("+")){
+            else if(str.charAt(0)=='+'){
                 int x = s.pop();
                 int z = x+s.peek();
                 s.push(x);
                 s.push(z);
             }
-            else if(str.equals("D"))
+            else if(str.charAt(0)=='D')
                 s.push(s.peek()*2);
             else
                 s.pop();
