@@ -8,9 +8,7 @@ class Solution {
                 s.push(0-Integer.parseInt(str.substring(1,str.length())));
             else if(str.equals("+")){
                 int x = s.pop();
-                int y = s.pop();
-                int z = x+y;
-                s.push(y);
+                int z = x+s.peek();
                 s.push(x);
                 s.push(z);
             }
