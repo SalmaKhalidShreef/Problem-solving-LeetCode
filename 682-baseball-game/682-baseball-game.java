@@ -1,25 +1,31 @@
 class Solution {
     public int calPoints(String[] ops) {
         Stack<Integer> s = new Stack();
+        int res=0;
         for(String str :ops){
-            if(Character.isDigit(str.charAt(0)))
+            if(Character.isDigit(str.charAt(0))){
                 s.push(Integer.parseInt(str));
-            else if(str.charAt(0)=='-')
+                res+=s.peek();
+            }
+            else if(str.charAt(0)=='-'){
                 s.push(0-Integer.parseInt(str.substring(1,str.length())));
+                res+=s.peek();}
             else if(str.charAt(0)=='+'){
                 int x = s.pop();
                 int z = x+s.peek();
+                res+=z;
                 s.push(x);
                 s.push(z);
             }
-            else if(str.charAt(0)=='D')
+            else if(str.charAt(0)=='D'){
                 s.push(s.peek()*2);
-            else
-                s.pop();
+                res+=s.peek();
+            }
+            else{
+                res-=s.pop();
+            }
         }
-        int res=0;
-        while(!s.isEmpty())
-            res+=s.pop();
+
         return res;
     }
 }
