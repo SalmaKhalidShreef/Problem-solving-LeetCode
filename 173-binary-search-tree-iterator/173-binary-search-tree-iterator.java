@@ -14,27 +14,29 @@
  * }
  */
 class BSTIterator {
-    Stack<Integer> IteratorRoot;
+    ArrayList<Integer> IteratorRoot;
+    int pos;
     public BSTIterator(TreeNode root) {
-        this.IteratorRoot=new Stack();
-        IteratorRoot.push(Integer.MIN_VALUE);
+        this.IteratorRoot=new ArrayList();
+        pos=1;
+        IteratorRoot.add(Integer.MIN_VALUE);
         Inorder(root);
     }
     
     public int next() {
-        int val = IteratorRoot.pop();
+        int val = IteratorRoot.get(pos++);
         return val;
     }
     
     public boolean hasNext() {
-        return IteratorRoot.size()-1>0;
+        return pos<IteratorRoot.size();
     }
     private void Inorder(TreeNode root){
         if(root==null)
             return;
-        Inorder(root.right);
-        IteratorRoot.push(root.val);
         Inorder(root.left);
+        IteratorRoot.add(root.val);
+        Inorder(root.right);
     }
 }
 
