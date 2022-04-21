@@ -1,21 +1,31 @@
 class MyHashSet {
-        ArrayList<Integer> set;
+        int[] set;
+        boolean zero;
     public MyHashSet() {
-        this.set=new ArrayList();
+        int size=10*10*10*10*10*10;
+        zero=false;
+        this.set=new int[size+1];
+        System.out.println(set.length);
     }
     
     public void add(int key) {
-        set.add(key);
+        if(key==0)
+            zero=true;
+        set[key]=key;
     }
     
     public void remove(int key) {
-        set.removeIf(num->num==key);
-        System.out.println(set.contains(key));
+        if(key==0)
+            zero=false;
+        set[key]=-1;
     }
     
     public boolean contains(int key) {
-        return set.contains(key);
+        if(key==0)
+            return zero;
+        return set[key]==key;
     }
+
 
 }
 
