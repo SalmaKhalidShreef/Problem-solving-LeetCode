@@ -8,17 +8,15 @@ public class Codec {
     }
     // Encodes a URL to a shortened URL.
     public String encode(String longUrl) {
-        int i=longUrl.length();
+        
         StringBuilder shortURL=new StringBuilder();
-        while(i>=longUrl.length()){
-            char c = (char)Math.floor(Math.random()*128);
-            shortURL.append(c);
-            i=i/128;
-        }
-        while(map.containsKey(shortURL)){
-            char c = (char)Math.floor(Math.random()*128);
-            shortURL.setCharAt(shortURL.length()-1,c);
-        }
+        
+        for(int i=0;i<2;i++)
+            shortURL.append((char)Math.floor(Math.random()*128));     
+        
+        while(map.containsKey(shortURL))
+            shortURL.setCharAt(shortURL.length()-1,(char)Math.floor(Math.random()*128));
+        
         map.put(shortURL.toString(),longUrl);
         return shortURL.toString();
     }
