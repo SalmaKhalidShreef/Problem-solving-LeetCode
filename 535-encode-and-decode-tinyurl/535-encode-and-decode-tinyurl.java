@@ -16,9 +16,9 @@ public class Codec {
         
         while(map.containsKey(shortURL))
             shortURL.setCharAt(shortURL.length()-1,(char)Math.floor(Math.random()*128));
-        
-        map.put(shortURL.toString(),longUrl);
-        return shortURL.toString();
+        String res = shortURL.toString();
+        map.put(res,longUrl);
+        return res;
     }
 
     // Decodes a shortened URL to its original URL.
