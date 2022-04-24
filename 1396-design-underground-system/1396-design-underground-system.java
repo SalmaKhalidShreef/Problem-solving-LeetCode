@@ -17,31 +17,31 @@ class UndergroundSystem {
         Map innerMap=null;
         if(trips.containsKey(check.city)){
             if(trips.get(check.city).containsKey(stationName)){
-                innerMap=trips.get(check.city);
-                trip=(Trip)innerMap.get(stationName);
+                innerMap= trips.get(check.city);
+                trip= (Trip)innerMap.get(stationName);
+                trip.addTrip(t-check.time);
+                trips.put(check.city,innerMap);
             }
             else{
                 trip=new Trip(t-check.time);
-                innerMap=trips.get(check.city);
+                trip.addTrip(t-check.time);
+                trips.get(check.city).put(stationName,trip);
             }
         }
-        else
+        else{
             trip = new Trip(t-check.time);
-        
-        if(innerMap==null)
+            trip.addTrip(t-check.time);
             innerMap=new HashMap();
-        
-        trip.addTrip(t-check.time);
-        
-        innerMap.put(stationName,trip);
-        trips.put(check.city,innerMap);
+            innerMap.put(stationName,trip);
+            trips.put(check.city,innerMap);
 
+        }
+        
         checkIns.remove(id);
 
     }
     
     public double getAverageTime(String startStation, String endStation) {
-
         return trips.get(startStation).get(endStation).avgTime;
     }
 
