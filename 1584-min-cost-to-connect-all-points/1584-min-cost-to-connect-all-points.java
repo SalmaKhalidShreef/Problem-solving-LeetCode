@@ -13,7 +13,9 @@ class Solution {
             verticies[i]=vertex;
             q[vertex.idx]=true;
         }
+        int m=0;
         while(!queue.isEmpty()){
+            m++;
             Vertex vertex = queue.poll();
             System.out.println(vertex.key);
             q[vertex.idx]=false;
