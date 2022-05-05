@@ -17,18 +17,14 @@ class MyStack {
     
     public int pop() {
         int cnt=this.mySize;
-        int currTop=-1;
         while(cnt>1){
             if(cnt==2)
-                currTop=q.peek();
+                this.myTop=q.peek();
             q.add(q.poll());
-            cnt--;
-          
+            cnt-=1;
         }
-        int res=q.poll();
-        this.myTop=currTop;
         this.mySize--;
-        return res;
+        return q.poll();
 
     }
     
