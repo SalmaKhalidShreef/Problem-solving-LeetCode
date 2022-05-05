@@ -1,38 +1,40 @@
 class MyStack {
     Queue<Integer> q;
-    Queue<Integer> temp;
+    int mySize;
+    int myTop;
     public MyStack() {
         q=new LinkedList();
-        temp=new LinkedList();
+        mySize=0;
+        myTop=-1;
     }
     
     public void push(int x) {
-        while(!q.isEmpty())
-            temp.add(q.poll());
-        q.add(x);
-        while(!temp.isEmpty())
-            q.add(temp.poll());
+       q.add(x);
+       this.mySize++;
+       this.myTop=x;
     }
     
+    
     public int pop() {
-        /*while(q.size()>1)
-            temp.add(q.poll());
+        int cnt=this.mySize;
+        int currTop=-1;
+        while(cnt>1){
+            if(cnt==2)
+                currTop=q.peek();
+            q.add(q.poll());
+            cnt--;
+          
+        }
         int res=q.poll();
-        while(!temp.isEmpty())
-            q.add(temp.poll());
-            */
-        return q.poll();
+        this.myTop=currTop;
+        this.mySize--;
+        return res;
 
     }
     
     public int top() {
-       /* while(q.size()>1)
-            temp.add(q.poll());
-        int res=q.peek();
-        temp.add(q.poll());
-        while(!temp.isEmpty())
-            q.add(temp.poll());*/
-        return q.peek();
+       
+        return this.myTop;
     }
     
     public boolean empty() {
