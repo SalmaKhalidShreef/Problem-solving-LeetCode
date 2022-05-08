@@ -20,21 +20,21 @@ public class NestedIterator implements Iterator<Integer> {
     List<Integer>list;
     public NestedIterator(List<NestedInteger> nestedList) {
         list=new ArrayList();
-        for(int j=0;j<nestedList.size();j++)
-            add(nestedList.get(j));
+        add(nestedList);
     }
-    public void add(NestedInteger ni){
-        if(ni.isInteger())
+    public void add(List<NestedInteger> ni){
+        if(ni==null)
         {
-            list.add(ni.getInteger());
             return;
         }
         else{
-            for(int j=0;j<ni.getList().size();j++){
-                    add(ni.getList().get(j));
+            for(NestedInteger nii:ni)
+            if(nii.isInteger())
+                list.add(nii.getInteger());
+            else add(nii.getList());
             }
         }
-    }
+    
     @Override
     public Integer next() {
         return list.get(i++);
