@@ -36,7 +36,6 @@ class Trie {
     }
 }
  class TrieNode{
-    char c;
     TrieNode[] children;
     boolean isEnd;
     public TrieNode(){
