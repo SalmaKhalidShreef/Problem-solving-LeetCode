@@ -1,52 +1,74 @@
+class TrieNode {
+    boolean isWord;
+    TrieNode children[];
+    
+    TrieNode() {
+        isWord = false;
+        children = new TrieNode[26];
+    }
+}
+
 class Trie {
+    
     TrieNode root;
 
     public Trie() {
-        this.root=new TrieNode();
+        root = new TrieNode();
     }
     
     public void insert(String word) {
-        TrieNode curr=this.root;
-        for(char c : word.toCharArray()){
-            if(curr.children[c-'a']==null)
-                curr.children[c-'a']=new TrieNode();
-            curr=curr.children[c-'a'];
+        
+        TrieNode curr = root;
+        char[] chArr = word.toCharArray();
+        
+        for (char c : chArr) {
+            TrieNode next;
+            if (curr.children[c - 'a'] == null) {
+                next = new TrieNode();
+                curr.children[c - 'a'] = next;
+            } else {
+                next = curr.children[c - 'a'];
+            }
+            curr = next;
         }
-        curr.isEnd=true;
+        
+        curr.isWord = true;
     }
     
     public boolean search(String word) {
-        TrieNode curr=root;
-        for(char c:word.toCharArray()){
-            if(curr.children[c-'a']==null)
+        
+        TrieNode curr = root;
+        char[] chArr = word.toCharArray();
+        
+        for (char c : chArr) {
+            TrieNode next;
+            if (curr.children[c - 'a'] == null)
                 return false;
-            curr=curr.children[c-'a'];
+            
+            next = curr.children[c - 'a'];
+            curr = next;
         }
-        return curr.isEnd;
+        
+        if (curr.isWord)
+            return true;
+        
+        return false;
     }
     
     public boolean startsWith(String prefix) {
-        TrieNode curr=root;
-        for(char c:prefix.toCharArray()){
-            if(curr.children[c-'a']==null)
+        
+        TrieNode curr = root;
+        char[] chArr = prefix.toCharArray();
+        
+        for (char c : chArr) {
+            TrieNode next;
+            if (curr.children[c - 'a'] == null)
                 return false;
-            curr=curr.children[c-'a'];
+            
+            next = curr.children[c - 'a'];
+            curr = next;
         }
+        
         return true;
     }
 }
- class TrieNode{
-    TrieNode[] children;
-    boolean isEnd;
-    public TrieNode(){
-        this.children=new TrieNode[26];
-        this.isEnd=false;
-    }
-}
-/**
- * Your Trie object will be instantiated and called as such:
- * Trie obj = new Trie();
- * obj.insert(word);
- * boolean param_2 = obj.search(word);
- * boolean param_3 = obj.startsWith(prefix);
- */
