@@ -5,12 +5,9 @@ class Solution {
         visited = new boolean[rooms.size()];
         allRooms = rooms;
         dfs(0);
-        for(int i =0; i<rooms.size();i++){
-            for(int room : rooms.get(i)){
-                if(!visited[room])
-                    return false;
-            }
-        }
+        for(boolean roomVisited : visited)
+            if(!roomVisited)
+                return false;
         return true;
     }
     
