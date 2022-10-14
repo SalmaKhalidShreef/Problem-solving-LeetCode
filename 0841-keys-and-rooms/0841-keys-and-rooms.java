@@ -1,23 +1,25 @@
 class Solution {
     boolean[] visited;
-    List<List<Integer>> allRooms;
     public boolean canVisitAllRooms(List<List<Integer>> rooms) {
         visited = new boolean[rooms.size()];
-        allRooms = rooms;
-        dfs(0);
-        for(boolean roomVisited : visited)
+        Stack<Integer> stack = new Stack();
+        visited[0] = true;
+        stack.push(0);
+        
+        while(!stack.isEmpty()){
+            int room = stack.pop();
+            for(int neighbour : rooms.get(room)){
+                if(!visited[neighbour]){
+                    visited[neighbour] = true;
+                    stack.push(neighbour);
+                }
+            }
+        }
+        for(boolean roomVisited : visited){
             if(!roomVisited)
                 return false;
-        return true;
-    }
-    
-    private void dfs(int room){
-        if(visited[room])
-            return;
-        visited[room] = true;
-        for(int accessibleRoom : allRooms.get(room)){
-            dfs(accessibleRoom);
         }
+        return true;
     }
     
 }
