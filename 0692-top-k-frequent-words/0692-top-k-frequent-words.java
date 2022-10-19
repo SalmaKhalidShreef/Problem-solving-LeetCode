@@ -5,7 +5,7 @@ class Solution {
             hm.put(word,hm.getOrDefault(word,0)+1);
         }
          PriorityQueue<Pair<String, Integer>> pq =  
-                              new PriorityQueue<>(new PairComparator());
+                              new PriorityQueue<>(k+1,new PairComparator());
         for(Map.Entry<String,Integer> entry : hm.entrySet()){
             pq.add(new Pair<>(entry.getKey(), entry.getValue()));
             if(pq.size()> k)
