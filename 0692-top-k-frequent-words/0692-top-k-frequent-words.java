@@ -4,26 +4,34 @@ class Solution {
         for(String word:words){
             hm.put(word,hm.getOrDefault(word,0)+1);
         }
-         PriorityQueue<Pair<String, Integer>> pq =  
-                              new PriorityQueue<>(k+1,new PairComparator());
+         PriorityQueue<WordFrequency> pq =  
+                              new PriorityQueue<>(k+1);
         for(Map.Entry<String,Integer> entry : hm.entrySet()){
-            pq.add(new Pair<>(entry.getKey(), entry.getValue()));
+            pq.add(new WordFrequency(entry.getKey(), entry.getValue()));
             if(pq.size()> k)
                 pq.remove();
         }
         
         LinkedList<String> result = new LinkedList();
         while(!pq.isEmpty())
-            result.addFirst(pq.remove().getKey());
+            result.addFirst(pq.remove().word);
         
         return result;
     }
-    class PairComparator implements Comparator<Pair<String,Integer>>{
-            public int compare(Pair<String,Integer> p1, Pair<String,Integer> p2) {
-                int diff = Integer.compare(p1.getValue(), p2.getValue());
-                if(diff== 0)
-                    return p2.getKey().compareTo(p1.getKey());
-                return diff;   
-                }
-        }
+   class WordFrequency implements Comparable<WordFrequency> {
+    String word;
+    int count;
+    
+    public WordFrequency(String word, int count) {
+        this.word = word;
+        this.count = count;
+    }
+    
+    @Override
+    public int compareTo(WordFrequency that) {
+        int diff = this.count - that.count;
+        
+        return (diff != 0) ? diff : that.word.compareTo(this.word);
+    }
+   }
 }
