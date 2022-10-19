@@ -12,9 +12,9 @@ class Solution {
                 pq.remove();
         }
         
-        List<String> result = new ArrayList();
+        LinkedList<String> result = new LinkedList();
         while(!pq.isEmpty())
-            result.add(0,pq.remove().getKey());
+            result.addFirst(pq.remove().getKey());
         
         return result;
     }
