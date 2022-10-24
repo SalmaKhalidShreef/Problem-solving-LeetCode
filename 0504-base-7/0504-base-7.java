@@ -4,7 +4,7 @@ class Solution {
         int res = 0;
         while(num != 0){
             int digit = num %7;
-            res+=digit*Math.pow(10,cnt);
+            res+=digit*(int)Math.pow(10,cnt);
             num= num/7;
             cnt++;
         }
