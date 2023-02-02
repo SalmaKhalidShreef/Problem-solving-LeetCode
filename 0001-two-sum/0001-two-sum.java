@@ -1,35 +1,19 @@
 class Solution {
     public int[] twoSum(int[] nums, int target) {
-        HashMap<Integer,Integer> hm = new HashMap<Integer,Integer>();
-        
-        for(int num: nums)
+        HashMap<Integer,Integer> numToIdx = new HashMap();
+        for(int i =0;i<nums.length;i++)
         {
-            hm.put(num,hm.getOrDefault(num,0)+1);
+            numToIdx.put(nums[i],i);
         }
         
-        for(int num : hm.keySet())
+        
+        for(int i=0;i<nums.length;i++)
         {
-            if(hm.containsKey(target-num) && target-num!= num)
-                return constructSum(num,target-num,nums);
-            if(hm.containsKey(target-num) && target-num == num && hm.get(target-num) >=2)
-                return constructSum(num,target-num,nums);
+            int currTarget = target - nums[i];
+            if(numToIdx.containsKey(currTarget) && numToIdx.get(currTarget)!=i)
+                return new int[]{i,numToIdx.get(currTarget)};
         }
         
         return new int[]{};
-        
-    }
-    
-    
-    private int [] constructSum(int x, int y,int[] nums){
-        int[] res = new int[2];
-        int j =0;
-        for(int i=0;i<nums.length;i++)
-        {
-            if(nums[i] == x || nums[i] == y)
-                res[j++] = i;
-        }
-        
-        return res;
-            
     }
 }
