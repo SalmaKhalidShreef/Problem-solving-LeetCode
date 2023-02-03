@@ -5,16 +5,14 @@ class Solution {
         
         while(i<=j)
         {
-            if(!Character.isLetter(lowerCaseInput.charAt(i)) &&
-                                   !Character.isDigit(lowerCaseInput.charAt(i)))
+            if(!Character.isLetterOrDigit(lowerCaseInput.charAt(i)))
             {
                 i++;
                 continue;
             }
                 
             
-            if(!Character.isLetter(lowerCaseInput.charAt(j)) &&
-                                   !Character.isDigit(lowerCaseInput.charAt(j)))
+            if(!Character.isLetterOrDigit(lowerCaseInput.charAt(j)))
             {
                 j--;
                 continue;
