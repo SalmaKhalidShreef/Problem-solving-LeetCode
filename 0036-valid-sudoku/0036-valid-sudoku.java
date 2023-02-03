@@ -6,27 +6,20 @@ class Solution {
         
         for(int i =0;i<9;i++)
         {
-            rowFreq = new int[10];
-            for(int j = 0;j<9;j++)
-            {
-                if(board[i][j]!='.')
-                {
-                    rowFreq[board[i][j]-'0']++;
-                    if(rowFreq[board[i][j]-'0']>1) return false;                    
-                }
-            }
+            if(!validate(board[i],i))
+                return false;
+                
         }
         for(int i =0;i<9;i++)
         {
-            colFreq = new int[10];
+            char[] c = new char[10];
             for(int j = 0;j<9;j++)
             {
-                if(board[j][i]!='.')
-                {
-                    colFreq[board[j][i]-'0']++;
-                    if(colFreq[board[j][i]-'0']>1) return false;                    
-                }
+                c[j] = board[j][i];
             }
+            
+            if(!validate(c,i))
+                return false;
         }
         
         for(int i=0;i<9;i++)
@@ -55,5 +48,22 @@ class Solution {
         
         return true;
         
+    }
+    
+    private boolean validate(char[] array, int i)
+    {
+        for(int x =0;x<9;x++)
+            System.out.print(array[x]+" ");
+        int[] rowFreq = new int[10];
+        for(int j = 0;j<9;j++)
+        {
+            if(array[j]!='.')
+            {
+                rowFreq[array[j]-'0']++;
+                if(rowFreq[array[j]-'0']>1) return false;                    
+            }
+        }
+        
+        return true;
     }
 }
