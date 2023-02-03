@@ -1,46 +1,59 @@
 class Solution {
     public boolean isValidSudoku(char[][] board) {
-        char[] itemValidate = new char[9];
-
-        for(int i=0; i<9; i++){
-            for(int j=0; j<9; j++){
-                itemValidate[j] = board[i][j];
-            }
-            if(!checkItemValidate(itemValidate))
-                return false;
-        }
-
-        for(int i=0; i<9; i++){
-            for(int j=0; j<9; j++){
-                itemValidate[j] = board[j][i];
-            }
-            if(!checkItemValidate(itemValidate))
-                return false;
-        }
-
-        for(int boxRow = 0; boxRow<9; boxRow = boxRow+3){
-            for(int boxCol = 0; boxCol<9; boxCol = boxCol+3){
-                for(int i=0; i<3; i++){
-                for(int j=0; j<3; j++){
-                    itemValidate[i*3+j] = board[boxRow + i][boxCol + j];
+        int[] rowFreq = new int[10];
+        int[] colFreq = new int[10];
+        HashMap<String,HashSet<Character>> boxFreq = new HashMap();
+        
+        for(int i =0;i<9;i++)
+        {
+            rowFreq = new int[10];
+            for(int j = 0;j<9;j++)
+            {
+                if(board[i][j]!='.')
+                {
+                    rowFreq[board[i][j]-'0']++;
+                    if(rowFreq[board[i][j]-'0']>1) return false;                    
                 }
             }
-            if(!checkItemValidate(itemValidate))
-                    return false;
+        }
+        for(int i =0;i<9;i++)
+        {
+            colFreq = new int[10];
+            for(int j = 0;j<9;j++)
+            {
+                if(board[j][i]!='.')
+                {
+                    colFreq[board[j][i]-'0']++;
+                    if(colFreq[board[j][i]-'0']>1) return false;                    
+                }
             }
         }
-        return true;
-    }
+        
+        for(int i=0;i<9;i++)
+        {
+            for(int j =0;j<9;j++)
+            {
+                if(board[i][j]!='.')
+                {
+                    if(boxFreq.containsKey(i/3+","+j/3))
+                    {
+                        if(boxFreq.get(i/3+","+j/3).contains(board[i][j]))
+                            return false;
+                        boxFreq.get(i/3+","+j/3).add(board[i][j]);
 
-    private boolean checkItemValidate(char[] itemValidate){
-        boolean[] flag = new boolean[9];
-        for(int i=0; i<9; i++){
-            if(itemValidate[i] == '.')
-                continue;
-            if(flag[itemValidate[i] - '0' - 1])
-                return false;
-            flag[itemValidate[i] - '0' - 1] = true;
+                        
+                    }
+                    
+                    else
+                    {
+                        boxFreq.put(i/3+","+j/3,new HashSet<Character>());
+                        boxFreq.get(i/3+","+j/3).add(board[i][j]);
+                    }
+                }
+            }
         }
+        
         return true;
+        
     }
 }
