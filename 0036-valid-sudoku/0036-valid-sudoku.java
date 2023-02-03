@@ -52,8 +52,7 @@ class Solution {
     
     private boolean validate(char[] array, int i)
     {
-        for(int x =0;x<9;x++)
-            System.out.print(array[x]+" ");
+
         int[] rowFreq = new int[10];
         for(int j = 0;j<9;j++)
         {
