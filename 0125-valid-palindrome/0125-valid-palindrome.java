@@ -5,7 +5,6 @@ class Solution {
         
         while(i<=j)
         {
-            System.out.println(lowerCaseInput.charAt(i)+", "+ lowerCaseInput.charAt(j));
             if(!Character.isLetter(lowerCaseInput.charAt(i)) &&
                                    !Character.isDigit(lowerCaseInput.charAt(i)))
             {
@@ -25,7 +24,6 @@ class Solution {
             {
                 return false;
             }
-            System.out.println(i+" "+j);
             
             i++;
             j--;   
