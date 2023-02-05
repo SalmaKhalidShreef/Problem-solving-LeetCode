@@ -1,7 +1,8 @@
 class Solution {
     public List<List<Integer>> threeSum(int[] nums) {
         Arrays.sort(nums);
-        HashSet<List<Integer>> resSet = new HashSet();
+        HashSet<List<Integer>> triplets = new HashSet();
+        
         for(int i =0;i<nums.length-1;i++)
         {
             int left = i+1; int right = nums.length-1;
@@ -14,25 +15,16 @@ class Solution {
                     right--;
                 else
                 {
-                    List<Integer> triplet = new ArrayList(
-                        Arrays.asList(nums[i],nums[left++],nums[right--]));
-                    if(!resSet.contains(triplet))
-                    {
-                        int currLeft =left-1;
-                        int currRight = right+1;
-                        resSet.add(triplet);
-                        while(left<right && nums[currLeft] == nums[left] && nums[currRight]==nums[right])
-                        {
-                            left++; 
-                            right--;
-                        }
-                    }
-                    
+                    //List<Integer> triplet = new ArrayList(
+                    //    Arrays.asList(nums[i],nums[left++],nums[right--]));
+                  //  if(!triplets.contains(triplet))
+                        triplets.add( new ArrayList(
+                        Arrays.asList(nums[i],nums[left++],nums[right--])));
                 }
             }
         }
         
-        return new ArrayList(resSet);
+        return new ArrayList(triplets);
         
     }
     
