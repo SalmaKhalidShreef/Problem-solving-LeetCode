@@ -18,7 +18,14 @@ class Solution {
                         Arrays.asList(nums[i],nums[left++],nums[right--]));
                     if(!resSet.contains(triplet))
                     {
+                        int currLeft =left-1;
+                        int currRight = right+1;
                         resSet.add(triplet);
+                        while(left<right && nums[currLeft] == nums[left] && nums[currRight]==nums[right])
+                        {
+                            left++; 
+                            right--;
+                        }
                     }
                     
                 }
