@@ -3,7 +3,7 @@ class Solution {
         Arrays.sort(nums);
         HashSet<List<Integer>> triplets = new HashSet();
         
-        for(int i =0;i<nums.length-1;i++)
+        for(int i =0;i<nums.length-2;i++)
         {
             int left = i+1; int right = nums.length-1;
             int target = 0-nums[i];
@@ -15,11 +15,8 @@ class Solution {
                     right--;
                 else
                 {
-                    //List<Integer> triplet = new ArrayList(
-                    //    Arrays.asList(nums[i],nums[left++],nums[right--]));
-                  //  if(!triplets.contains(triplet))
-                        triplets.add( new ArrayList(
-                        Arrays.asList(nums[i],nums[left++],nums[right--])));
+                    triplets.add( new ArrayList(
+                    Arrays.asList(nums[i],nums[left++],nums[right--])));
                 }
             }
         }
