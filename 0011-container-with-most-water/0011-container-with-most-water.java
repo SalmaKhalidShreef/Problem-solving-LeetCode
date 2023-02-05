@@ -8,11 +8,10 @@ class Solution {
         {
             int minHeight = Math.min(height[left],height[right]);
             int area = minHeight * (right-left);
-            //System.out.println(area+" "+minHeight);
             max = Math.max(max,area);
-            if(minHeight == height[left])
+            while(height[left] <= minHeight && left < right)
                 left++;
-            else
+            while(height[right] <= minHeight && right > left)
                 right--;
         }
         
