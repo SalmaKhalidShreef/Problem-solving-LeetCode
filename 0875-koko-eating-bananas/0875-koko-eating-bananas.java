@@ -22,7 +22,7 @@ class Solution {
         return res;
     }
     
-    private int eat(double speed,int[] piles)
+    private int eat(int speed,int[] piles)
     {
         
         int hrsNeeded = 0;
