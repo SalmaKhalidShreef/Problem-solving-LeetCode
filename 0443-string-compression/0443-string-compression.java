@@ -12,11 +12,19 @@ class Solution {
             chars[res++] = chars[i];
             if(cnt > 1)
             {
-                for(char c : Integer.toString(cnt).toCharArray())
+                if(cnt<10)
+                    chars[res++] = (char)(cnt+'0');
+                else  
                 {
-                    chars[res++] = c;
+                    
+                    for(char c : Integer.toString(cnt).toCharArray())
+                    {
+                        chars[res++] = c;
+                    }                    
                 }
+
             }
+
             i += cnt;
         }
         return res;
